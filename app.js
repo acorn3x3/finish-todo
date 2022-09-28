@@ -18,7 +18,7 @@ let todos = [];
 let error = null;
 
 /* Events */
-
+// aaaaaaaaaaaaaaaaaaaaaaaaa
 window.addEventListener('load', async () => {
     // > Part B: Add a click event listener for the todoEl
     //      - call the async supabase function to delete all todos
