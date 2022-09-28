@@ -1,11 +1,13 @@
 /* Imports */
 // this will check if we have a user and set signout link if it exists
 import './auth/user.js';
-// Part A: import create todo
 // Part B: import get todos
 // Part C: import complete todos
 // Part D: import delete all function
 import { renderTodo } from './render-utils.js';
+// Part A: import create todo
+// import { createTodo } from './fetch-utils.js'; /dev note: this is already here?
+import { createTodo } from './fetch-utils.js';
 
 /* Get DOM Elements */
 const addTodoForm = document.getElementById('add-todo-form');
@@ -36,7 +38,8 @@ addTodoForm.addEventListener('submit', async (e) => {
     };
 
     // > Part A: Call the function to create a todo, passing in "newTodo":
-    const response = await null; // ???
+
+    const response = await createTodo(newTodo); // ???
     error = response.error;
     const todo = response.data;
 
@@ -45,8 +48,8 @@ addTodoForm.addEventListener('submit', async (e) => {
     } else {
         todos.push(todo);
         displayTodos();
-        addTodoForm.reset();
     }
+    addTodoForm.reset();
 });
 
 removeButton.addEventListener('click', async () => {

@@ -30,10 +30,14 @@ export async function signOutUser() {
 /* Data functions */
 
 export async function createTodo(todo) {
+    const response = await client.from('todos').insert(todo).single();
+
+    return response;
     // > Part A: Insert the todo in supabase, returns a single row
 }
 
 export async function getTodos() {
+    return await client.from('todos').select('*');
     // > Part B: Get all todos for this user from supabase
 }
 
