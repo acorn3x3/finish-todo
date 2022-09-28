@@ -30,20 +30,30 @@ export async function signOutUser() {
 /* Data functions */
 
 export async function createTodo(todo) {
+    const response = await client.from('todos').insert(todo).single();
+
+    return response;
     // > Part A: Insert the todo in supabase, returns a single row
 }
 
 export async function getTodos() {
+    return await client.from('todos').select('*');
     // > Part B: Get all todos for this user from supabase
 }
 
 export async function completeTodo(id) {
+    return await client
+        .from('todos')
+        .update({ complete: true })
+        .eq('id', id)
+        .single();
     // > Part C: call update (set complete to true) for the todo that
     // matches the correct id. Returns a single record:
 }
 
 export async function deleteAllTodos() {
     const user = getUser();
+    return await client.from('todos').delete().eq('user_id', user.id);
 
     // > Part D: delete all todos for this user in supabase:
 
