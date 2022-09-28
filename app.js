@@ -7,7 +7,7 @@ import './auth/user.js';
 import { renderTodo } from './render-utils.js';
 // Part A: import create todo
 // import { createTodo } from './fetch-utils.js'; /dev note: this is already here?
-import { createTodo } from './fetch-utils.js';
+import { createTodo, getTodos } from './fetch-utils.js';
 
 /* Get DOM Elements */
 const addTodoForm = document.getElementById('add-todo-form');
@@ -22,9 +22,11 @@ let error = null;
 /* Events */
 
 window.addEventListener('load', async () => {
-    // > Part B: Add a click event listener for the todoEl
-    //      - call the async supabase function to delete all todos
-    //        and get the response
+    const response = await getTodos();
+    error = response.error;
+    todos = response.data;
+    // > Part B: Get todos
+    //      - call the async supabase function to get todos
     //      - set the todos and error state from the response
     //      - if there's an error call displayError
     //      - otherwise, display the todos
